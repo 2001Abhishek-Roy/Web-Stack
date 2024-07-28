@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body
+            {
+                background-image: url(sign.jpg);
+                background-size: cover;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 50px;
+            }
+            fieldset
+            {
+                height: 600px;
+                width: 400px;
+                border-radius: 8px;
+                box-shadow: 5px 10px rgb(193, 168, 168);
+                padding: 20px 30px;
+                background-color: transparent;
+                backdrop-filter: blur(10px);
+                text-align: center;
+            }
+            text
+            {
+                color: white;
+                text-align: center;
+                font-family: Arial Rounded MT;
+                font-size: 36px;
+            }
+            .edit
+            {
+                height: 40px; 
+                width: 95%;
+                border-radius: 6px;
+                padding-left: 20px;
+                border: none;
+                margin: 10px 0;
+            }
+            button
+            {
+                background-color: greenyellow;
+                color: whitesmoke;
+                height: 30px;
+                width: 200px;
+                border: none;
+                border-radius: 6px;
+                margin: 10px 0;
+            }
+            .checkbox-wrapper
+            {
+                margin: 20px 0;
+            }
+        </style>
+        <script>
+            function validateForm() {
+                let firstName = document.querySelector("input[placeholder='First Name']").value;
+                let lastName = document.querySelector("input[placeholder='Last Name']").value;
+                let email = document.querySelector("input[placeholder='Email']").value;
+                let password = document.querySelector("input[placeholder='Password']").value;
+                let confirmPassword = document.querySelector("input[placeholder='Confirm Password']").value;
+                let termsAccepted = document.querySelector("input[type='checkbox']").checked;
+
+                if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                    alert("All fields are required.");
+                    return false;
+                }
+
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!emailPattern.test(email)) {
+                    alert("Please enter a valid email address.");
+                    return false;
+                }
+
+                if (password.length < 6) {
+                    alert("Password must be at least 6 characters long.");
+                    return false;
+                }
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match.");
+                    return false;
+                }
+
+                if (!termsAccepted) {
+                    alert("You must accept the Terms Of Use & Privacy Policy.");
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <text> Sign Up </text> <br><br><br>
+            <input type="text" placeholder="First Name" class="edit"><br>
+            <input type="text" placeholder="Last Name" class="edit"><br>
+            <input type="text" placeholder="Email" class="edit"><br>
+            <input type="password" placeholder="Password" class="edit"><br>
+            <input type="password" placeholder="Confirm Password" class="edit"><br>
+            <div class="checkbox-wrapper">
+                <input type="checkbox"> <write style="color: white;"> I accept the Terms Of Use & Privacy Policy</write>
+            </div>
+            <button onclick="if(validateForm()) document.location='Log In.html'"> Sign Up </button><br>
+            <write style="color: white;"> Already Have an Account?? <a href="Log In.html" style="color: white;">Login Here</a></write>
+        </fieldset>
+    </body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            float: left;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url(Hotel.jpg) no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 70px; /* Height of navbar */
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .hero button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #0056b3;
+        }
+
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .services, .features {
+            background-color: #f9f9f9;
+        }
+
+        .services .service, .features .feature {
+            display: inline-block;
+            width: 30%;
+            margin: 1.5%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            transition: transform 0.3s;
+        }
+
+        .services .service:hover, .features .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .services .service h3, .features .feature h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .services .service p, .features .feature p {
+            font-size: 16px;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact form input, .contact form textarea {
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact form button {
+            padding: 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact form button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">HotelMS</div>
+        <div style="margin-right: 40px;">
+            <a href="#hero">Home</a>
+            <a href="#services">Services</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <div id="hero" class="hero">
+        <div>
+            <h1>Welcome to Hotel Management System</h1>
+            <p>Efficiently manage your hotel operations</p>
+            <button onclick="document.location='Sign Up.html'">Get Started</button>
+        </div>
+    </div>
+
+    <div id="services" class="section services">
+        <h2>Our Services</h2>
+        <p>Discover the variety of services we offer to enhance your hotel management experience.</p>
+        <div class="service">
+            <h3>Room Booking</h3>
+            <p>Easy and efficient room booking management for your hotel.</p>
+        </div>
+        <div class="service">
+            <h3>Staff Management</h3>
+            <p>Manage your hotel staff with ease and efficiency.</p>
+        </div>
+        <div class="service">
+            <h3>Inventory Control</h3>
+            <p>Keep track of your hotel's inventory seamlessly.</p>
+        </div>
+    </div>
+
+    <div id="features" class="section features">
+        <h2>Key Features</h2>
+        <p>Explore the features that make our hotel management system stand out.</p>
+        <div class="feature">
+            <h3>Analytics</h3>
+            <p>Get detailed insights and analytics on your hotel performance.</p>
+        </div>
+        <div class="feature">
+            <h3>Customer Support</h3>
+            <p>24/7 customer support to assist you whenever needed.</p>
+        </div>
+        <div class="feature">
+            <h3>Mobile Friendly</h3>
+            <p>Access your hotel management system on any device.</p>
+        </div>
+    </div>
+
+    <div id="contact" class="section contact">
+        <h2>Contact Us</h2>
+        <p>Have any questions? Feel free to reach out to us.</p>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Hotel Management System. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Add smooth scroll to sections
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
