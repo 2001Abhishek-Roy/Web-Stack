@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-image: url('Home.jpg');
@@ -17,7 +19,7 @@
         .bar1 {
             background-color: transparent;
             backdrop-filter: blur(20px);
-            height: 50px;
+            height: 110px;
             width: 100%;
             overflow: hidden;
             border-bottom: 2px solid white;
@@ -63,7 +65,7 @@
         }
 
         fieldset {
-            height: 400px;
+            height: 450px;
             width: 600px;
             background-color: rgba(255, 255, 255, 0.8);
             border: none;
@@ -103,7 +105,6 @@
 
         button[type="submit"] {
             width: 100%;
-            height: 45px;
             border: none;
             background-color: #007bff;
             color: white;
@@ -189,7 +190,7 @@
         }
 
         #but1 {
-            width: 80px;
+            width: 90px;
         }
 
         /* Modal Styles */
@@ -217,103 +218,94 @@
             border-radius: 10px;
             position: relative;
         }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Map Styles */
-        #map {
-            height: 400px;
-            width: 100%;
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
     <div class="bar1">
-        <div>
-            <a onclick="showPage('homeContent')">Home</a>
-            <a onclick="showPage('aboutContent')">About</a>
-            <a onclick="showPage('servicesContent')">Services</a>
-            <a onclick="showPage('contactContent')">Contact</a>
-        </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#homeContent" role="tab" aria-controls="home" aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="about-tab" data-toggle="tab" href="#aboutContent" role="tab" aria-controls="about" aria-selected="false">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="services-tab" data-toggle="tab" href="#servicesContent" role="tab" aria-controls="services" aria-selected="false">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contactContent" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+            </li>
+        </ul>
         <button onclick="document.location='Geo.html'" id="but1">Locate Me</button>
     </div>
     <h1>Go Anywhere!! Book Anywhere!!</h1>
     <div class="container">
-        <div id="homeContent" class="page active fade-in">
-            <fieldset>
-                <form>
-                    <label for="destination">Destination</label>
-                    <input type="text" id="destination" name="destination" placeholder="Enter destination">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="homeContent" role="tabpanel" aria-labelledby="home-tab">
+                <fieldset>
+                    <form>
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" name="destination" placeholder="Enter destination">
 
-                    <label for="checkin">Check-in Date</label>
-                    <input type="date" id="checkin" name="checkin">
+                        <label for="checkin">Check-in Date</label>
+                        <input type="date" id="checkin" name="checkin">
 
-                    <label for="checkout">Check-out Date</label>
-                    <input type="date" id="checkout" name="checkout">
+                        <label for="checkout">Check-out Date</label>
+                        <input type="date" id="checkout" name="checkout">
 
-                    <label for="guests">Number of Guests</label>
-                    <select id="guests" name="guests">
-                        <option value="1">1 Guest</option>
-                        <option value="2">2 Guests</option>
-                        <option value="3">3 Guests</option>
-                        <option value="4">4 Guests</option>
-                        <option value="5">5 Guests</option>
-                        <option value="6">6 Guests</option>
-                    </select>
-
-                    <button type="submit">Search</button>
-                </form>
-            </fieldset>
-        </div>
-        <div id="aboutContent" class="page fade-in">
-            <div id="about-us">
-                <h2>About Us</h2>
-                <p>Welcome to Our Company! We are dedicated to providing the best services to our clients.</p>
-                <h3>Our Mission</h3>
-                <p>Our mission is to deliver high-quality solutions that create value and reliable competitive advantage for our clients around the world.</p>
-                <h3>Our Team</h3>
-                <p>Our team is composed of talented professionals with diverse backgrounds and expertise, committed to excellence and innovation.</p>
+                        <label for="guests">Number of Guests</label>
+                        <select id="guests" name="guests">
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6">6 Guests</option>
+                        </select>
+                        <button type="submit">Search</button>
+                    </form>
+                </fieldset>
             </div>
-        </div>
-        <div id="servicesContent" class="page fade-in">
-            <div id="services">
-                <h2>Our Services</h2>
-                <p>We offer a wide range of services to meet your needs. Our services include...</p>
-                <!-- Add more content about your services here -->
+            <div class="tab-pane fade" id="aboutContent" role="tabpanel" aria-labelledby="about-tab">
+                <div id="about-us">
+                    <h2>About Us</h2>
+                    <p>Welcome to Our Company! We are dedicated to providing the best services to our clients.</p>
+                    <h3>Our Mission</h3>
+                    <p>Our mission is to deliver high-quality solutions that create value and reliable competitive advantage for our clients around the world.</p>
+                    <h3>Our Team</h3>
+                    <p>Our team is composed of talented professionals with diverse backgrounds and expertise, committed to excellence and innovation.</p>
+                </div>
             </div>
-        </div>
-        <div id="contactContent" class="page fade-in">
-            <div id="contact">
-                <h2>Contact Us</h2>
-                <p>If you have any questions, feel free to reach out to us.</p>
-                <form>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name">
+            <div class="tab-pane fade" id="servicesContent" role="tabpanel" aria-labelledby="services-tab">
+                <div id="services">
+                    <h2>Our Services</h2>
+                    <p>We offer a wide range of services to meet your needs. Our services include...</p>
+                    <!-- Add more content about your services here -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contactContent" role="tabpanel" aria-labelledby="contact-tab">
+                <div id="contact">
+                    <h2>Contact Us</h2>
+                    <p>If you have any questions, feel free to reach out to us.</p>
+                    <form>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name">
 
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your email">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email">
 
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Your message" rows="5"></textarea>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your message" rows="5"></textarea>
 
-                    <button type="submit">Send</button>
-                </form>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
