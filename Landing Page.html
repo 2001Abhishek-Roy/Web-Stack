@@ -41,7 +41,14 @@
         .navbar .logo {
             font-size: 24px;
             font-weight: bold;
-            float: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo svg {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
         }
 
         .hero {
@@ -161,7 +168,13 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="logo">HotelMS</div>
+        <div class="logo">
+            <!-- Embedded SVG of a hotel icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 3v1H7v1H5v4h2v1H5v1h14v-1h-2v-1h2V9h-2V8h-5V4H7V3h5zm0 6h1v1h-1v-1zm-3 0h1v1H9v-1zm6 0h1v1h-1v-1zM5 18h1v-3H5v3zm2-4h2v-3H7v3zm4 0h2v-3h-2v3zm4 0h2v-3h-2v3z"/>
+            </svg>
+            Hotel ABC
+        </div>
         <div style="margin-right: 40px;">
             <a href="#hero">Home</a>
             <a href="#services">Services</a>

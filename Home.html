@@ -187,6 +187,58 @@
                 opacity: 1;
             }
         }
+
+        #but1 {
+            width: 80px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Map Styles */
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -197,7 +249,7 @@
             <a onclick="showPage('servicesContent')">Services</a>
             <a onclick="showPage('contactContent')">Contact</a>
         </div>
-        
+        <button onclick="document.location='Geo.html'" id="but1">Locate Me</button>
     </div>
     <h1>Go Anywhere!! Book Anywhere!!</h1>
     <div class="container">
@@ -263,17 +315,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active', 'fade-in');
-                if (page.id === pageId) {
-                    page.classList.add('active', 'fade-in');
-                }
-            });
-        }
-    </script>
 </body>
 </html>
