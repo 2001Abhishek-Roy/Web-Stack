@@ -2,8 +2,7 @@
 <html>
     <head>
         <style>
-            body
-            {
+            body {
                 background-image: url(sign.jpg);
                 background-size: cover;
                 display: flex;
@@ -11,8 +10,7 @@
                 justify-content: center;
                 margin-top: 50px;
             }
-            fieldset
-            {
+            fieldset {
                 height: 600px;
                 width: 400px;
                 border-radius: 8px;
@@ -22,15 +20,13 @@
                 backdrop-filter: blur(10px);
                 text-align: center;
             }
-            text
-            {
+            text {
                 color: white;
                 text-align: center;
                 font-family: Arial Rounded MT;
                 font-size: 36px;
             }
-            .edit
-            {
+            .edit {
                 height: 40px; 
                 width: 95%;
                 border-radius: 6px;
@@ -38,8 +34,7 @@
                 border: none;
                 margin: 10px 0;
             }
-            button
-            {
+            button {
                 background-color: greenyellow;
                 color: whitesmoke;
                 height: 30px;
@@ -48,8 +43,7 @@
                 border-radius: 6px;
                 margin: 10px 0;
             }
-            .checkbox-wrapper
-            {
+            .checkbox-wrapper {
                 margin: 20px 0;
             }
         </style>
@@ -75,6 +69,12 @@
 
                 if (password.length < 6) {
                     alert("Password must be at least 6 characters long.");
+                    return false;
+                }
+
+                const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+                if (!passwordPattern.test(password)) {
+                    alert("Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
                     return false;
                 }
 
