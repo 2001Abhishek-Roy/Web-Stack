@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geolocation with Map</title>
+    <title>Company Location with Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         body {
@@ -50,6 +50,7 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
             opacity: 0;
             animation: fadeIn 1s 1s ease-out forwards;
+            margin-top: 20px;
         }
 
         button:hover {
@@ -86,62 +87,33 @@
     </style>
 </head>
 <body>
-    <h1>Geolocation with Map Example</h1>
-    <button onclick="getLocation()">Get Location</button>
-    <p id="location"></p>
+    <h1>Our Company Location</h1>
     <div id="map"></div>
+    <button onclick="openGoogleMaps()">Open in Google Maps</button>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        let map;
-        let marker;
+        // Coordinates for the company's location
+        const companyLatitude = 37.7749;
+        const companyLongitude = -122.4194;
 
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
+        // Initialize the map centered at the company's location
+        const map = L.map('map').setView([companyLatitude, companyLongitude], 13);
 
-        function showPosition(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            document.getElementById("location").innerHTML = "Latitude: " + latitude + 
-            "<br>Longitude: " + longitude;
+        // Set up the OpenStreetMap layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-            if (!map) {
-                map = L.map('map').setView([latitude, longitude], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
+        // Add a marker for the company's location
+        L.marker([companyLatitude, companyLongitude]).addTo(map)
+            .bindPopup("Our Company Location")
+            .openPopup();
 
-                marker = L.marker([latitude, longitude]).addTo(map)
-                    .bindPopup("You are here")
-                    .openPopup();
-            } else {
-                map.setView([latitude, longitude], 13);
-                marker.setLatLng([latitude, longitude])
-                    .bindPopup("You are here")
-                    .openPopup();
-            }
-        }
-
-        function showError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    document.getElementById("location").innerHTML = "User denied the request for Geolocation.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    document.getElementById("location").innerHTML = "Location information is unavailable.";
-                    break;
-                case error.TIMEOUT:
-                    document.getElementById("location").innerHTML = "The request to get user location timed out.";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    document.getElementById("location").innerHTML = "An unknown error occurred.";
-                    break;
-            }
+        // Function to open Google Maps with the given coordinates
+        function openGoogleMaps() {
+            const googleMapsUrl = `https://www.google.com/maps?q=${companyLatitude},${companyLongitude}`;
+            window.open(googleMapsUrl, '_blank');
         }
     </script>
 </body>
