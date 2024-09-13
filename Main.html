@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Book Catalogue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        #filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        #book-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .book {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        
+        .book h3 {
+            font-size: 1.2em;
+        }
+        
+        #pagination {
+            margin-top: 20px;
+        }
+        
+        #error-message {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Catalogue</h1>
+        <div id="filter">
+            <input type="text" id="search" placeholder="Search by title or author...">
+            <select id="sort">
+                <option value="title">Sort by Title</option>
+                <option value="author">Sort by Author</option>
+                <option value="year">Sort by Year</option>
+            </select>
+        </div>
+        <div id="book-list"></div>
+        <div id="pagination"></div>
+        <div id="error-message">An error occurred while fetching the data.</div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const bookList = document.getElementById("book-list");
+            const errorMessage = document.getElementById("error-message");
+            let currentPage = 1;
+            const itemsPerPage = 5;
+            let books = [];
+
+            // Fetch data from a JSON file (or replace the URL with an API endpoint)
+            const fetchBooks = async () => {
+                try {
+                    const response = await fetch('books.json'); // Replace with your API endpoint if needed
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch data");
+                    }
+                    books = await response.json();
+                    displayBooksPaginated(currentPage);
+                } catch (error) {
+                    errorMessage.style.display = "block";
+                    errorMessage.textContent = `Error: ${error.message}`;
+                }
+            };
+
+            const displayBooks = (booksToDisplay) => {
+                bookList.innerHTML = "";  // Clear previous content
+                booksToDisplay.forEach(book => {
+                    const bookElement = document.createElement('div');
+                    bookElement.classList.add('book');
+                    bookElement.innerHTML = `
+                        <h3>${book.title}</h3>
+                        <p>Author: ${book.author}</p>
+                        <p>Year: ${book.year}</p>
+                    `;
+                    bookList.appendChild(bookElement);
+                });
+            };
+
+            const displayBooksPaginated = (page) => {
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const paginatedBooks = books.slice(start, end);
+                displayBooks(paginatedBooks);
+                setupPagination();
+            };
+
+            const setupPagination = () => {
+                const pagination = document.getElementById('pagination');
+                pagination.innerHTML = "";
+
+                const totalPages = Math.ceil(books.length / itemsPerPage);
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.textContent = i;
+                    pageButton.addEventListener('click', () => {
+                        currentPage = i;
+                        displayBooksPaginated(currentPage);
+                    });
+                    pagination.appendChild(pageButton);
+                }
+            };
+
+            fetchBooks();
+        });
+    </script>
+</body>
+</html>
